@@ -215,3 +215,97 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &569280691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 569280694}
+  - component: {fileID: 569280693}
+  - component: {fileID: 569280692}
+  m_Layer: 0
+  m_Name: QuestMaker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &569280692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569280691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 070a7b1795840d54e947cf563562b39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  names:
+  - Mage
+  - Shaman
+  - Priest
+  - Barbarian
+  - Paladin
+  - Druid
+  - Rogue
+  - Knight
+  - Ranger
+  enemies:
+  - Orcs
+  - Goblins
+  - Giant Spiders
+  - Chimeras
+  - Lizardfolk
+  - Fairies
+  - Dire Wolves
+  - Demons
+  - Angels
+  - Zombies
+  - Slimes
+  - Giant Squids
+  - Elementals
+  - Bandits
+  - Dragons
+  questTypes:
+  - Dungeon
+  - Escort
+  - Assassination
+  - Delivery
+  - Exploration
+  - Diplomacy
+  - Defence
+  - Gather
+  - Cull
+--- !u!114 &569280693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569280691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5964d8c85fe3d44ab50d60a6a6c1412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classes: {fileID: 569280692}
+--- !u!4 &569280694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569280691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.9132979, y: -0.08866502, z: 0.03392602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
