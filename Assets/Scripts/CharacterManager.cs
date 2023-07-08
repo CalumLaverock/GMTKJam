@@ -5,23 +5,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public struct Character
+{
+    public Sprite charImage;
+
+    public HeroClass charClass;
+    public int charLevel;
+
+    public List<string> charQuestStrengths;
+    public List<string> charQuestWeaknesses;
+}
+
 public class CharacterManager : MonoBehaviour
 {
     [SerializeField]
     GameObject characterInfoSheet;
 
-    struct Character
-    {
-        public Sprite charImage;
-
-        public HeroClass charClass;
-        public int charLevel;
-
-        public List<string> charQuestStrengths;
-        public List<string> charQuestWeaknesses;
-    }
-
-    Character character;
+    public Character character;
 
     [SerializeField]
     Sprite aragorn;
