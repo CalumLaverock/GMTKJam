@@ -11,15 +11,13 @@ struct Quest
 
 public class QuestGenerator : MonoBehaviour
 {
-    public Classes classes;
-
     Quest CreateQuest()
     {
         Quest newQuest = new Quest();
 
         newQuest.level = Random.Range(1, 100);
-        newQuest.enemy = classes.enemies[Random.Range(0, 14)];
-        newQuest.questType = classes.questTypes[Random.Range(0, 8)];
+        newQuest.enemy = Classes.enemies[Random.Range(0, 14)];
+        newQuest.questType = Classes.questTypes[Random.Range(0, 8)];
 
         return newQuest;
     }

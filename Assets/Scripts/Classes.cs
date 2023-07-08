@@ -5,16 +5,14 @@ using UnityEngine;
 public struct HeroClass
 {
     public string name;
-    public string group;
     public Dictionary<string, int> enemyStrengths;
-    public Dictionary<string, int> questStrengths;
 }
 
-public class Classes : MonoBehaviour
+public static class Classes
 {
-    public List<HeroClass> classes = new List<HeroClass>();
+    public static List<HeroClass> classes = new List<HeroClass>();
 
-    public string[] names = {
+    public static string[] names = {
         "Mage",
         "Shaman",
         "Priest",
@@ -26,7 +24,7 @@ public class Classes : MonoBehaviour
         "Ranger"
     };
 
-    public string[] enemies = {
+    public static string[] enemies = {
         "Orcs",
         "Goblins",
         "Giant Spiders",
@@ -44,7 +42,7 @@ public class Classes : MonoBehaviour
         "Dragons"
     };
 
-    public string[] questTypes = {
+    public static string[] questTypes = {
         "Dungeon",
         "Escort",
         "Assassination",
@@ -56,14 +54,8 @@ public class Classes : MonoBehaviour
         "Cull"
     };
 
-    void Start()
+    static Classes()
     {
-        string[] groups = {
-            "Magic",
-            "Brawler",
-            "Damage"
-        };
-
         string[] enemyStrengths = {
             "132131232122331",
             "321321113233221",
@@ -76,26 +68,15 @@ public class Classes : MonoBehaviour
             "233212321331112"
         };
 
-        string[] questStrengths = {
-            "312133221",
-            "231321312",
-            "123212133"
-        };
-
         for (int i = 0; i < 9; i++)
         {
             HeroClass hero = new HeroClass();
             hero.name = names[i];
-            hero.group = groups[i / 3];
 
             hero.enemyStrengths = new Dictionary<string, int> { };
-            hero.questStrengths = new Dictionary<string, int> { };
 
             for (int j = 0; j < 15; j++)
                 hero.enemyStrengths[enemies[j]] = enemyStrengths[i][j] - '0';
-
-            for (int j = 0; j < 9; j++)
-                hero.questStrengths[questTypes[j]] = questStrengths[i / 3][j];
 
             classes.Add(hero);
         }
