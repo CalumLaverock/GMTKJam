@@ -56,18 +56,28 @@ public class GuidebookManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.RightArrow) && pageNum < 14)
+        if (Input.GetKeyDown(KeyCode.G))
         {
-            pageNum++;
-
-            UpdatePage();
+            open = !open;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftArrow) && pageNum > 0)
-        {
-            pageNum--;
+        guidebook.SetActive(open);
 
-            UpdatePage();
+        if (open)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) && pageNum < 14)
+            {
+                pageNum++;
+
+                UpdatePage();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && pageNum > 0)
+            {
+                pageNum--;
+
+                UpdatePage();
+            }
         }
     }
 
@@ -77,7 +87,24 @@ public class GuidebookManager : MonoBehaviour
 
         info.Find("Creature Label").Find("Creature").GetComponent<TextMeshProUGUI>().text = pages[pageNum].name;
 
-        info.Find("Strength Label").Find("Good").GetComponent<TextMeshProUGUI>().text = pages[pageNum].goodMatchups[0] + ", " + pages[pageNum].goodMatchups[1] + ", " + pages[pageNum].goodMatchups[2];
-        info.Find("Weakness Label").Find("Bad").GetComponent<TextMeshProUGUI>().text = pages[pageNum].badMatchups[0] + ", " + pages[pageNum].badMatchups[1] + ", " + pages[pageNum].badMatchups[2];
+        info.Find("Strength Label").Find("Good").GetComponent<TextMeshProUGUI>().text = "";
+
+        for(int i = 0; i < pages[pageNum].goodMatchups.Count; i++)
+        {
+            info.Find("Strength Label").Find("Good").GetComponent<TextMeshProUGUI>().text += pages[pageNum].goodMatchups[i];
+
+            if (i < pages[pageNum].goodMatchups.Count - 1)
+                info.Find("Strength Label").Find("Good").GetComponent<TextMeshProUGUI>().text += ", ";
+        }
+
+        info.Find("Weakness Label").Find("Bad").GetComponent<TextMeshProUGUI>().text = "";
+
+        for (int i = 0; i < pages[pageNum].badMatchups.Count; i++)
+        {
+            info.Find("Weakness Label").Find("Bad").GetComponent<TextMeshProUGUI>().text += pages[pageNum].badMatchups[i];
+
+            if (i < pages[pageNum].badMatchups.Count - 1)
+                info.Find("Weakness Label").Find("Bad").GetComponent<TextMeshProUGUI>().text += ", ";
+        }
     }
 }

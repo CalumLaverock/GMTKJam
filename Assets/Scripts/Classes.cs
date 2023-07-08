@@ -14,13 +14,9 @@ public static class Classes
 
     public static string[] names = {
         "Mage",
-        "Shaman",
-        "Priest",
+        "Bard",
         "Barbarian",
-        "Paladin",
-        "Druid",
-        "Rogue",
-        "Knight",
+        "Swordsman",
         "Ranger"
     };
 
@@ -59,16 +55,12 @@ public static class Classes
         string[] enemyStrengths = {
             "132131232122331",
             "321321113233221",
-            "213211233321123",
             "121133322112332",
-            "312322132113213",
-            "123132311223312",
-            "332213223311121",
             "211323111232233",
             "233212321331112"
         };
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 5; i++)
         {
             HeroClass hero = new HeroClass();
             hero.name = names[i];
