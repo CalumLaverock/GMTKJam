@@ -2,35 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-struct Quest
+public struct Quest
 {
     public int level;
     public string enemy;
     public string questType;
 }
 
-public class QuestGenerator : MonoBehaviour
+public static class QuestGenerator
 {
-    Quest CreateQuest()
+    public static Quest CreateQuest()
     {
         Quest newQuest = new Quest();
 
-        newQuest.level = Random.Range(1, 100);
+        newQuest.level = Random.Range(1, 20);
         newQuest.enemy = Classes.enemies[Random.Range(0, 14)];
         newQuest.questType = Classes.questTypes[Random.Range(0, 8)];
 
         return newQuest;
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Quest newQuest = CreateQuest();
-
-            Debug.Log(newQuest.level);
-            Debug.Log(newQuest.enemy);
-            Debug.Log(newQuest.questType);
-        }
     }
 }
