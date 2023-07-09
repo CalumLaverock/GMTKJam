@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class QuestList : MonoBehaviour
 {
-    [SerializeField]
-    private int numQuests;
+    public int numQuests;
 
     [SerializeField]
     private GameObject questPrefab;
@@ -21,12 +20,25 @@ public class QuestList : MonoBehaviour
 
     private Transform selectedQuest;
 
+    public bool showList;
+
+    [SerializeField]
+    private CharacterManager charManager;
+    [SerializeField]
+    private QuestManager questManager;
+
+    private int numTurnedAway;
+
     private void Start()
     {
         pointerEventData = new PointerEventData(eventSystem);
         gr = GetComponentInParent<GraphicRaycaster>();
 
         startPos = transform.position;
+        showList = false;
+        numTurnedAway = 0;
+
+        GenerateQuestList();
     }
 
     private void Update()
@@ -57,10 +69,12 @@ public class QuestList : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            GenerateQuestList();
+            showList = !showList;
         }
+
+        GetComponentInParent<Canvas>().enabled = showList;
     }
 
     private void GenerateQuestList()
@@ -77,9 +91,47 @@ public class QuestList : MonoBehaviour
             GameObject questCell = Instantiate(questPrefab, transform);
             Quest quest = QuestGenerator.CreateQuest();
 
-            questCell.transform.Find("Enemy Label").Find("Enemy").GetComponent<TextMeshProUGUI>().text = quest.enemy;
-            questCell.transform.Find("Level Label").Find("Level").GetComponent<TextMeshProUGUI>().text = quest.level.ToString();
-            questCell.transform.Find("Type Label").Find("Type").GetComponent<TextMeshProUGUI>().text = quest.questType;
+            questCell.transform.Find("Enemy Label/Enemy").GetComponent<TextMeshProUGUI>().text = quest.enemy;
+            questCell.transform.Find("Level Label/Level").GetComponent<TextMeshProUGUI>().text = quest.level.ToString();
+            questCell.transform.Find("Type Label/Type").GetComponent<TextMeshProUGUI>().text = quest.questType;
+            questCell.GetComponent<QuestStore>().storedQuest = quest;
+        }
+    }
+
+    public void SubmitQuest()
+    {
+        if(selectedQuest != null)
+        {
+            questManager.CalculateReputation(selectedQuest.GetComponent<QuestStore>().storedQuest);
+
+            numTurnedAway = 0;
+
+            Destroy(selectedQuest.gameObject); // remove the submitted quest
+            selectedQuest = null;
+
+            if(transform.childCount == 1) // the game object technically doesn't get destroyed until later so the childCount will be 1 when the last quest is removed
+            {
+                // change this to be whatever happens for getting a new "level"
+                Debug.Log("no quests here mate");
+                GenerateQuestList();
+            }
+
+            charManager.GenerateCharacter();
+        }
+    }
+
+    public void NoQuest()
+    {
+        // new character
+        charManager.GenerateCharacter();
+
+        numTurnedAway++;
+        if(numTurnedAway >= 5)
+        {
+            // reset the level after turning away too many?
+            numTurnedAway = 0;
+            charManager.GenerateCharacter();
+            GenerateQuestList();
         }
     }
 }

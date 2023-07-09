@@ -20,7 +20,7 @@ public class GuidebookManager : MonoBehaviour
     private int pageNum;
     private static List<Page> pages;
 
-    private bool open;
+    public bool open;
 
     // Start is called before the first frame update
     void Start()
@@ -85,26 +85,26 @@ public class GuidebookManager : MonoBehaviour
     {
         var info = guidebook.transform;
 
-        info.Find("Creature Label").Find("Creature").GetComponent<TextMeshProUGUI>().text = pages[pageNum].name;
+        info.Find("Creature Label/Creature").GetComponent<TextMeshProUGUI>().text = pages[pageNum].name;
 
-        info.Find("Strength Label").Find("Good").GetComponent<TextMeshProUGUI>().text = "";
+        info.Find("Strength Label/Good").GetComponent<TextMeshProUGUI>().text = "";
 
         for(int i = 0; i < pages[pageNum].goodMatchups.Count; i++)
         {
-            info.Find("Strength Label").Find("Good").GetComponent<TextMeshProUGUI>().text += pages[pageNum].goodMatchups[i];
+            info.Find("Strength Label/Good").GetComponent<TextMeshProUGUI>().text += pages[pageNum].goodMatchups[i];
 
             if (i < pages[pageNum].goodMatchups.Count - 1)
-                info.Find("Strength Label").Find("Good").GetComponent<TextMeshProUGUI>().text += ", ";
+                info.Find("Strength Label/Good").GetComponent<TextMeshProUGUI>().text += ", ";
         }
 
-        info.Find("Weakness Label").Find("Bad").GetComponent<TextMeshProUGUI>().text = "";
+        info.Find("Weakness Label/Bad").GetComponent<TextMeshProUGUI>().text = "";
 
         for (int i = 0; i < pages[pageNum].badMatchups.Count; i++)
         {
-            info.Find("Weakness Label").Find("Bad").GetComponent<TextMeshProUGUI>().text += pages[pageNum].badMatchups[i];
+            info.Find("Weakness Label/Bad").GetComponent<TextMeshProUGUI>().text += pages[pageNum].badMatchups[i];
 
             if (i < pages[pageNum].badMatchups.Count - 1)
-                info.Find("Weakness Label").Find("Bad").GetComponent<TextMeshProUGUI>().text += ", ";
+                info.Find("Weakness Label/Bad").GetComponent<TextMeshProUGUI>().text += ", ";
         }
     }
 }

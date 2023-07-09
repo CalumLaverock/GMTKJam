@@ -42,6 +42,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer 1
+  - name: Background
     uniqueID: 1223747203
+    locked: 0
+  - name: Midground
+    uniqueID: 250472571
+    locked: 0
+  - name: Character
+    uniqueID: 761795385
+    locked: 0
+  - name: Foreground
+    uniqueID: 2657327121
+    locked: 0
+  - name: Reputation
+    uniqueID: 1192666765
+    locked: 0
+  - name: QuestList
+    uniqueID: 655563427
+    locked: 0
+  - name: Guidebook
+    uniqueID: 1199316167
+    locked: 0
+  - name: CharacterSheet
+    uniqueID: 3884657115
+    locked: 0
+  - name: UI
+    uniqueID: 3359924597
     locked: 0

@@ -26,7 +26,7 @@ public class DocumentManager : MonoBehaviour
 
             foreach (GameObject doc in Docs)
             {
-                Vector2 size = doc.GetComponent<SpriteRenderer>().bounds.size;
+                Vector2 size = doc.GetComponent<BoxCollider2D>().bounds.size;
 
                 if (worldClick.x > doc.transform.position.x - size.x / 2 &&
                     worldClick.x < doc.transform.position.x + size.x / 2 &&

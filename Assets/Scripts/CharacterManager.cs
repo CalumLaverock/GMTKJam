@@ -30,21 +30,12 @@ public class CharacterManager : MonoBehaviour
     {
         character.charQuestStrengths = new List<string>();
         character.charQuestWeaknesses = new List<string>();
+
+        GenerateCharacter();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            GenerateCharacter();
-
-            var infoSheet = characterInfoSheet.transform;
-            infoSheet.Find("Class Label").Find("Class").GetComponent<TextMeshProUGUI>().text = character.charClass.name;
-            infoSheet.Find("Level Label").Find("Level").GetComponent<TextMeshProUGUI>().text = character.charLevel.ToString();
-            infoSheet.Find("Strengths Label").Find("Strengths").GetComponent<TextMeshProUGUI>().text = character.charQuestStrengths[0] + ", " + character.charQuestStrengths[1];
-            infoSheet.Find("Weaknesses Label").Find("Weaknesses").GetComponent<TextMeshProUGUI>().text = character.charQuestWeaknesses[0] + ", " + character.charQuestWeaknesses[1];
-            infoSheet.Find("Image").GetComponent<Image>().sprite = character.charImage;
-        }
     }
 
     public void GenerateCharacter()
@@ -67,5 +58,12 @@ public class CharacterManager : MonoBehaviour
             character.charQuestWeaknesses.Add(questList[rand]);
             questList.Remove(questList[rand]);
         }
+
+        var infoSheet = characterInfoSheet.transform;
+        infoSheet.Find("Class Label/Class").GetComponent<TextMeshProUGUI>().text = character.charClass.name;
+        infoSheet.Find("Level Label/Level").GetComponent<TextMeshProUGUI>().text = character.charLevel.ToString();
+        infoSheet.Find("Strengths Label/Strengths").GetComponent<TextMeshProUGUI>().text = character.charQuestStrengths[0] + ",\n" + character.charQuestStrengths[1];
+        infoSheet.Find("Weaknesses Label/Weaknesses").GetComponent<TextMeshProUGUI>().text = character.charQuestWeaknesses[0] + ",\n" + character.charQuestWeaknesses[1];
+        infoSheet.Find("Image").GetComponent<Image>().sprite = character.charImage;
     }
 }

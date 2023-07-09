@@ -19,6 +19,6 @@ public class ReputationManager : MonoBehaviour
     {
         var info = rep.transform;
 
-        info.Find("Reputation Label").Find("Reputation").GetComponent<TextMeshProUGUI>().text = GetReputation().ToString();
+        info.Find("Reputation Label").Find("Reputation").GetComponent<TextMeshProUGUI>().text = GetReputation().ToString("F2");
     }
 }
