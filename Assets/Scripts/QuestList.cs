@@ -134,10 +134,7 @@ public class QuestList : MonoBehaviour
         numTurnedAway++;
         if(numTurnedAway >= 5)
         {
-            // reset the level after turning away too many?
-            numTurnedAway = 0;
-            charManager.GenerateCharacter();
-            GenerateQuestList();
+            ReputationManager.AddReputation((numTurnedAway - 5) * -1);
         }
     }
 }
