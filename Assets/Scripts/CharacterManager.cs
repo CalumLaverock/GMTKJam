@@ -28,14 +28,9 @@ public class CharacterManager : MonoBehaviour
 
     private AdventurerAnimation anim;
 
-    public Sprite[] advenSprites;
-
-    private bool startEnterAnim;
-
     private void Start()
     {
         anim = adventurer.GetComponent<AdventurerAnimation>();
-        anim.animSprites = advenSprites;
         anim.SetState(true);
 
         character.charQuestStrengths = new List<string>();
@@ -53,11 +48,9 @@ public class CharacterManager : MonoBehaviour
         character.charQuestStrengths.Clear();
         character.charQuestWeaknesses.Clear();
 
-        character.charLevel = Random.Range(1, 20);
-        character.charClassIndex = Random.Range(0, Classes.classes.Count - 1);
+        character.charLevel = Random.Range(1, 21);
+        character.charClassIndex = Random.Range(0, Classes.classes.Count);
         character.charClass = Classes.classes[character.charClassIndex];
-
-        adventurer.GetComponent<SpriteRenderer>().sprite = advenSprites[character.charClassIndex];
 
         List<string> questList = Classes.questTypes.ToList();
         for(int i = 0; i < 2; i++)

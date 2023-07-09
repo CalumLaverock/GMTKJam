@@ -15,9 +15,9 @@ public static class QuestGenerator
     {
         Quest newQuest = new Quest();
 
-        newQuest.level = Random.Range(1, 20);
-        newQuest.enemy = Classes.enemies[Random.Range(0, 14)];
-        newQuest.questType = Classes.questTypes[Random.Range(0, 8)];
+        newQuest.level = Random.Range(1, 21);
+        newQuest.enemy = Classes.enemies[Random.Range(0, 15)];
+        newQuest.questType = Classes.questTypes[Random.Range(0, 9)];
 
         return newQuest;
     }
