@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public struct Character
 {
-    public Sprite charImage;
-
     public HeroClass charClass;
     public int charLevel;
 
@@ -42,7 +40,6 @@ public class CharacterManager : MonoBehaviour
     {
         character.charQuestStrengths.Clear();
         character.charQuestWeaknesses.Clear();
-        character.charImage = aragorn;
 
         character.charLevel = Random.Range(1, 20);
         character.charClass = Classes.classes[Random.Range(0, Classes.classes.Count - 1)];
@@ -64,6 +61,5 @@ public class CharacterManager : MonoBehaviour
         infoSheet.Find("Level Label/Level").GetComponent<TextMeshProUGUI>().text = character.charLevel.ToString();
         infoSheet.Find("Strengths Label/Strengths").GetComponent<TextMeshProUGUI>().text = character.charQuestStrengths[0] + ",\n" + character.charQuestStrengths[1];
         infoSheet.Find("Weaknesses Label/Weaknesses").GetComponent<TextMeshProUGUI>().text = character.charQuestWeaknesses[0] + ",\n" + character.charQuestWeaknesses[1];
-        infoSheet.Find("Image").GetComponent<Image>().sprite = character.charImage;
     }
 }

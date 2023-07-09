@@ -16,7 +16,7 @@ public static class Classes
         "Mage",
         "Bard",
         "Barbarian",
-        "Swordsman",
+        "Knight",
         "Ranger"
     };
 
