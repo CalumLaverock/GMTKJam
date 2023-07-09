@@ -78,8 +78,10 @@ public class QuestList : MonoBehaviour
         GetComponentInParent<Canvas>().enabled = showList;
     }
 
-    private void GenerateQuestList()
+    public void GenerateQuestList()
     {
+        numTurnedAway = 0;
+
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject); // clear out the last quest list
@@ -91,9 +93,12 @@ public class QuestList : MonoBehaviour
 
         if (extra > 0)
             extra /= 5;
+        else
+            extra = 0;
 
         for (int i = 0; i < numQuests + extra; i++)
         {
+
             GameObject questCell = Instantiate(questPrefab, transform);
             Quest quest = QuestGenerator.CreateQuest();
 
@@ -110,17 +115,8 @@ public class QuestList : MonoBehaviour
         {
             questManager.CalculateReputation(selectedQuest.GetComponent<QuestStore>().storedQuest);
 
-            numTurnedAway = 0;
-
             Destroy(selectedQuest.gameObject); // remove the submitted quest
             selectedQuest = null;
-
-            if(transform.childCount == 1) // the game object technically doesn't get destroyed until later so the childCount will be 1 when the last quest is removed
-            {
-                // change this to be whatever happens for getting a new "level"
-                Debug.Log("no quests here mate");
-                GenerateQuestList();
-            }
 
             charManager.GenerateCharacter();
         }

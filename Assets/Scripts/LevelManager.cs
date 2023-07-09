@@ -9,6 +9,9 @@ public class LevelManager : MonoBehaviour
     public QuestList questList;
     public GuidebookManager guidebookManager;
 
+    [SerializeField]
+    GameObject DayManager;
+
     public void QuitGame()
     {
         SceneManager.LoadScene("Main Menu");
@@ -16,20 +19,27 @@ public class LevelManager : MonoBehaviour
 
     public void SpriteButtonClick(string buttonType)
     {
-        if (buttonType == "Guidebook Image")
-            guidebookManager.open = true;
-        else if (buttonType == "Questlist Image")
-            questList.showList = true;
+        if (DayManager.GetComponent<DayManager>().dayTime == true)
+        {
+            if (buttonType == "Guidebook Image")
+                guidebookManager.open = true;
+            else if (buttonType == "Questlist Image")
+                questList.showList = true;
+        }
     }
 
     public bool IsSpriteButtonOpen(string buttonType)
     {
-        if (buttonType == "Guidebook Image")
-            return guidebookManager.open;
-        else if (buttonType == "Questlist Image")
-            return questList.showList;
-        else
-            return true;
+        if (DayManager.GetComponent<DayManager>().dayTime == true)
+        {
+            if (buttonType == "Guidebook Image")
+                return guidebookManager.open;
+            else if (buttonType == "Questlist Image")
+                return questList.showList;
+            else
+                return true;
+        }
+        else return true;
     }
 
     public void Win()

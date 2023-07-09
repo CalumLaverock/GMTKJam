@@ -705,7 +705,6 @@ GameObject:
   - component: {fileID: 1008521969}
   - component: {fileID: 1008521968}
   - component: {fileID: 1008521967}
-  - component: {fileID: 1008521966}
   m_Layer: 0
   m_Name: Status Info
   m_TagString: Document
@@ -713,19 +712,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1008521966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008521965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe45b09c2f502d248869ca6610752256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selected: 0
 --- !u!61 &1008521967
 BoxCollider2D:
   m_ObjectHideFlags: 0
