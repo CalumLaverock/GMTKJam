@@ -21,9 +21,9 @@ public class LevelManager : MonoBehaviour
     {
         if (DayManager.GetComponent<DayManager>().dayTime == true)
         {
-            if (buttonType == "Guidebook Image")
+            if (buttonType.Contains("Guidebook"))
                 guidebookManager.open = true;
-            else if (buttonType == "Questlist Image")
+            else if (buttonType.Contains("Questlist"))
                 questList.showList = true;
         }
     }
@@ -32,9 +32,9 @@ public class LevelManager : MonoBehaviour
     {
         if (DayManager.GetComponent<DayManager>().dayTime == true)
         {
-            if (buttonType == "Guidebook Image")
+            if (buttonType.Contains("Guidebook"))
                 return guidebookManager.open;
-            else if (buttonType == "Questlist Image")
+            else if (buttonType.Contains("Questlist"))
                 return questList.showList;
             else
                 return true;

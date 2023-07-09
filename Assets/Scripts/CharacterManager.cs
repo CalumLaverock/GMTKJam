@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
 
 public struct Character
 {
+    public int charClassIndex;
     public HeroClass charClass;
     public int charLevel;
 
@@ -17,22 +19,32 @@ public struct Character
 public class CharacterManager : MonoBehaviour
 {
     [SerializeField]
-    GameObject characterInfoSheet;
+    private GameObject characterInfoSheet;
 
     public Character character;
 
     [SerializeField]
-    Sprite aragorn;
+    private GameObject adventurer;
+
+    private AdventurerAnimation anim;
+
+    public Sprite[] advenSprites;
+
+    private bool startEnterAnim;
 
     private void Start()
     {
+        anim = adventurer.GetComponent<AdventurerAnimation>();
+        anim.animSprites = advenSprites;
+        anim.SetState(true);
+
         character.charQuestStrengths = new List<string>();
         character.charQuestWeaknesses = new List<string>();
 
         GenerateCharacter();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
     }
 
@@ -42,7 +54,10 @@ public class CharacterManager : MonoBehaviour
         character.charQuestWeaknesses.Clear();
 
         character.charLevel = Random.Range(1, 20);
-        character.charClass = Classes.classes[Random.Range(0, Classes.classes.Count - 1)];
+        character.charClassIndex = Random.Range(0, Classes.classes.Count - 1);
+        character.charClass = Classes.classes[character.charClassIndex];
+
+        adventurer.GetComponent<SpriteRenderer>().sprite = advenSprites[character.charClassIndex];
 
         List<string> questList = Classes.questTypes.ToList();
         for(int i = 0; i < 2; i++)
@@ -61,5 +76,8 @@ public class CharacterManager : MonoBehaviour
         infoSheet.Find("Level Label/Level").GetComponent<TextMeshProUGUI>().text = character.charLevel.ToString();
         infoSheet.Find("Strengths Label/Strengths").GetComponent<TextMeshProUGUI>().text = character.charQuestStrengths[0] + ",\n" + character.charQuestStrengths[1];
         infoSheet.Find("Weaknesses Label/Weaknesses").GetComponent<TextMeshProUGUI>().text = character.charQuestWeaknesses[0] + ",\n" + character.charQuestWeaknesses[1];
+
+        anim.animChar = character;
+        anim.SetCharacterAnim();
     }
 }
