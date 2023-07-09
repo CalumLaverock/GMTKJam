@@ -25,6 +25,15 @@ public class QuestManager : MonoBehaviour
             double qLevel = questInfo.level;
             double cLevel = characterInfo.charLevel;
 
+            foreach (var classType in Classes.classes)
+            {
+                if (classType.name == characterInfo.charClass.name)
+                {
+                    cLevel -= 2 - classType.enemyStrengths[questInfo.enemy];
+                    break;
+                }
+            }
+
             float repGain = 0;
 
             if (cLevel - qLevel < zeroPoint * -1) // Below minimum to gain reputation
@@ -40,7 +49,30 @@ public class QuestManager : MonoBehaviour
                 repGain = Convert.ToSingle(-maxPoints * Math.Pow(cLevel - qLevel - zeroPoint, 2) / Math.Pow(zeroPoint, 2));
             }
 
-            ReputationManager.AddReputation(repGain);
+            float mod = 1;
+
+            foreach(var strength in characterInfo.charQuestStrengths)
+            {
+                if(strength == questInfo.questType)
+                {
+                    mod = 1.25f;
+                    break;
+                }
+            }
+
+            if (mod == 1)
+            {
+                foreach (var weakness in characterInfo.charQuestWeaknesses)
+                {
+                    if (weakness == questInfo.questType)
+                    {
+                        mod = 0.75f;
+                        break;
+                    }
+                }
+            }
+
+            ReputationManager.AddReputation(repGain * mod);
         }
     }
 }
