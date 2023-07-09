@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class QuestList : MonoBehaviour
 {
@@ -86,7 +87,12 @@ public class QuestList : MonoBehaviour
 
         transform.position = startPos; // undo any scrolling that has happened
 
-        for (int i = 0; i < numQuests; i++)
+        int extra = (int)Math.Round(ReputationManager.GetReputation());
+
+        if (extra > 0)
+            extra /= 5;
+
+        for (int i = 0; i < numQuests + extra; i++)
         {
             GameObject questCell = Instantiate(questPrefab, transform);
             Quest quest = QuestGenerator.CreateQuest();

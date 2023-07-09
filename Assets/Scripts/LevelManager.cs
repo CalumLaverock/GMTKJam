@@ -31,4 +31,14 @@ public class LevelManager : MonoBehaviour
         else
             return true;
     }
+
+    public void Win()
+    {
+        SceneManager.LoadScene("Win");
+    }
+
+    public void Lose()
+    {
+        SceneManager.LoadScene("Lose");
+    }
 }
